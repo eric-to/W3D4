@@ -12,7 +12,9 @@
 class Response < ApplicationRecord
   validates :answer_choice_id, :respondent_id, presence: true
   
-  
+  def sibling_responses
+    
+  end
   
   belongs_to :answer_choice,
     primary_key: :id,
@@ -23,4 +25,8 @@ class Response < ApplicationRecord
     primary_key: :id,
     foreign_key: :respondent_id,
     class_name: 'User'
+    
+  has_one :question,
+    through: :answer_choice,
+    source: :question
 end
